@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: sensors-service
+  datasource:
+    username: sensorsadmin
+    password: sensorssuper
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://sensors-postgis:5432/sensors_db
+  cloud:
+    consul:
+      host: ${SPRING_CLOUD_CONSUL_HOST:consul}
+      port: ${SPRING_CLOUD_CONSUL_PORT:8500}
+      discovery:
+        enabled: true
+
+
+
+#
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://service-registry:8761/eureka/

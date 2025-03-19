@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: auth-gateway
+  datasource:
+    username: usersadmin
+    password: userssuper
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://users-postgres:5432/users_db
+  cloud:
+      consul:
+        host: ${SPRING_CLOUD_CONSUL_HOST:consul}
+        port: ${SPRING_CLOUD_CONSUL_PORT:8500}
+        discovery:
+          enabled: true
+      gateway:
+        routes:
+          - id: sensors-service
+            uri: lb://sensors-service  # Consul использует это имя
+            predicates:
+              - Path=/sensors/**
+
+#
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://service-registry:8761/eureka/
+
+
+jwt:
+  secret: awesomesecretawesomesecretawesomesecretawesomesecretawesomesecret

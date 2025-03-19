@@ -1,0 +1,29 @@
+spring:
+  mqtt:
+    broker-url: tcp://mqtt.example.com:1883
+    client-id: mqttClient
+    default-topic: testTopic
+    username: your-username
+    password: your-password
+
+  kafka:
+    producer:
+      bootstrap-servers: kafka.example.com:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+    consumer:
+      group-id: mqtt-to-kafka-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+
+
+topics:
+  kafka:
+    events: events-topic
+    params: params-topic
+groups:
+  kafka:
+    params: params-group-id
